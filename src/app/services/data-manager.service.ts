@@ -8,9 +8,24 @@ export class DataManagerService {
     private ajaxService: AjaxService
   ) { }
 
-  getCoins() {
+  getCoinsDataAPI() {
     return this.ajaxService
-      .get('/api/getData')
+      .get('/api/getCoinsDataAPI')
+      .then(
+        res => {
+          return res;
+        }
+      );
+  }
+
+  postCoinsDataDB(data) {
+    return this.ajaxService
+      .post('/api/postCoinsDataDB', data);
+  }
+
+  getCoinsDataDB() {
+    return this.ajaxService
+      .get('/api/getCoinsDataDB')
       .then(
         res => {
           return res;

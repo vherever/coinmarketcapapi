@@ -2,7 +2,11 @@
   coin-list works!
 </p>
 
-<button (click)="getAllCoinsData()">get Coins</button>
+<div *ngIf="log.getCoinsDataAPI">getCoinsDataAPI...</div>
+<div *ngIf="log.postCoinsDataDB">postCoinsDataDB...</div>
+<div *ngIf="log.getCoinsDataDB">getCoinsDataDB...</div>
+
+<button (click)="getCoinsDataAPI()">get Coins</button>
 
 <table width="100%">
   <tr>
