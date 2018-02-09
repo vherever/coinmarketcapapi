@@ -53,8 +53,8 @@ export class CoinListComponent implements OnInit {
       .then(
         res => {
           this.log.getCoinsDataDB = false;
-          console.log('res', res[res.length - 1]);
-          this.coinsData = res[res.length - 1].data;
+          console.log('res', res);
+          this.coinsData = res;
         }
       );
   }
