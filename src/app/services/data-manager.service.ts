@@ -1,45 +1,47 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from './ajax.service';
+import {AppConfig} from '../app.config';
 
 @Injectable()
 export class DataManagerService {
 
   constructor(
-    private ajaxService: AjaxService
+    private ajaxService: AjaxService,
+    private config: AppConfig
   ) { }
 
   importData() {
       return this.ajaxService
-          .get('/import')
+          .get(this.config.importCoinsDataUrl)
           .then(res => res);
   }
 
   getCoinsDataAPI() {
     return this.ajaxService
-      .get('/api/getCoinsDataAPI')
+      .get(this.config.getCoinsDataAPIUrl)
       .then(res => res);
   }
 
   postCoinsDataDB(data) {
     return this.ajaxService
-      .post('/coins', {data: data});
+      .post(this.config.postCoinsDataDBUrl, {data: data});
   }
 
   getCoinsDataDB() {
     return this.ajaxService
-      .get('/coins')
+      .get(this.config.getCoinsDataDBUrl)
       .then(res => res);
   }
 
   removeNoteById(id: any) {
       return this.ajaxService
-          .delete('/coins/' + id)
+          .delete(this.config.removeCoinDataByIdUrl + id)
           .then(res => res);
   }
 
   removeAll() {
     return this.ajaxService
-      .delete('/deleteAll')
+      .delete(this.config.removeAllCoinsDataUrl)
       .then(res => res);
   }
 

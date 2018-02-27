@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataManagerService} from '../services/data-manager.service';
+import {AppConfig} from '../app.config';
 
 @Component({
   selector: 'app-coin-list',
@@ -12,7 +13,8 @@ export class CoinListComponent implements OnInit {
   log: any;
 
   constructor(
-    private dmService: DataManagerService
+    private dmService: DataManagerService,
+    private config: AppConfig
   ) {
     this.log = {
       getCoinsDataAPI:  false,
@@ -20,6 +22,8 @@ export class CoinListComponent implements OnInit {
       getCoinsDataDB:   false,
       deleteData:       false
     };
+
+    console.log('config', this.config);
   }
 
   ngOnInit() {}
@@ -70,7 +74,7 @@ export class CoinListComponent implements OnInit {
       .then(
         res => {
           this.log.getCoinsDataDB = false;
-          if (res.length > 3) {
+          if (res.length > this.config.maxCoinsDataCountDB) {
             this.removeNoteById(res[0]._id);
             res.shift();
           }

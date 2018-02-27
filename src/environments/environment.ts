@@ -4,5 +4,16 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  config: {
+    name: 'Coin Market Cap API',
+    maxCoinsDataCountDB: 5, // maximum number of coins data entry in db
+
+    importCoinsDataUrl: '/importCoinsData',
+    getCoinsDataAPIUrl: '/api/getCoinsDataAPI',
+    postCoinsDataDBUrl: '/postCoinsDataDB',
+    getCoinsDataDBUrl: '/getCoinsDataDB',
+    removeCoinDataByIdUrl: '/removeCoinDataById/',
+    removeAllCoinsDataUrl: '/removeAllCoinsData'
+  }
 };
