@@ -21,4 +21,11 @@ export class AjaxService {
       .toPromise()
       .then(res => res);
   }
+
+  delete(id: any): Promise<any> {
+    return this.http
+        .delete(id)
+        .toPromise()
+        .then(res => res);
+  }
 }

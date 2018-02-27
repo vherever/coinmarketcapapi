@@ -6,12 +6,6 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 
-// Get our API routes
-const api = require('./server/routes/api');
-const getCoinsDataAPI = require('./server/routes/getCoinsDataAPI');
-const getCoinsDataDB = require('./server/routes/getCoinsDataDB');
-const postCoinsDataDB = require('./server/routes/postCoinsDataDB');
-
 const app = express();
 
 // Parsers for POST data
@@ -25,11 +19,9 @@ app.use(express.static(path.join(__dirname, 'dist')));
 require('./server/db/index');
 
 // Set our api routes
-app.use('/api', api);
 
-app.use('/api/getCoinsDataAPI', getCoinsDataAPI);
-app.use('/api/getCoinsDataDB', getCoinsDataDB);
-app.use('/api/postCoinsDataDB', postCoinsDataDB);
+require('./server/models/coin');
+require('./server/routes')(app);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
@@ -39,7 +31,7 @@ app.get('*', (req, res) => {
 /**
  * Get port from environment and store in Express.
  */
-const port = process.env.PORT || '8080';
+const port = process.env.PORT || '3000';
 app.set('port', port);
 
 /**

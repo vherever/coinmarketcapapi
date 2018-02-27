@@ -8,29 +8,39 @@ export class DataManagerService {
     private ajaxService: AjaxService
   ) { }
 
+  importData() {
+      return this.ajaxService
+          .get('/import')
+          .then(res => res);
+  }
+
   getCoinsDataAPI() {
     return this.ajaxService
       .get('/api/getCoinsDataAPI')
-      .then(
-        res => {
-          return res;
-        }
-      );
+      .then(res => res);
   }
 
   postCoinsDataDB(data) {
     return this.ajaxService
-      .post('/api/postCoinsDataDB', data);
+      .post('/coins', {data: data});
   }
 
   getCoinsDataDB() {
     return this.ajaxService
-      .get('/api/getCoinsDataDB')
-      .then(
-        res => {
-          return res;
-        }
-      );
+      .get('/coins')
+      .then(res => res);
+  }
+
+  removeNoteById(id: any) {
+      return this.ajaxService
+          .delete('/coins/' + id)
+          .then(res => res);
+  }
+
+  removeAll() {
+    return this.ajaxService
+      .delete('/deleteAll')
+      .then(res => res);
   }
 
 }

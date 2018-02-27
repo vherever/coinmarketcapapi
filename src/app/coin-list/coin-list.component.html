@@ -1,19 +1,17 @@
-<p>
-  coin-list works!
-</p>
-
 <div *ngIf="log.getCoinsDataAPI">getCoinsDataAPI...</div>
 <div *ngIf="log.postCoinsDataDB">postCoinsDataDB...</div>
 <div *ngIf="log.getCoinsDataDB">getCoinsDataDB...</div>
+<div *ngIf="log.deleteData">deleteData...</div>
 
-<button (click)="getCoinsDataAPI()">get Coins</button>
+<button (click)="getCoinsData()">get Coins</button>
+<button (click)="clearAllData()">clear all data</button>
 
 <table width="100%">
   <tr>
     <th align="left">#</th>
     <th align="left">Name</th>
   </tr>
-  <tr *ngFor="let item of coinsData; let i = index">
+  <tr *ngFor="let item of lastUpdatedCoinsData; let i = index">
     <td>{{ i + 1 }}</td>
     <td>{{ item.name }}</td>
   </tr>
