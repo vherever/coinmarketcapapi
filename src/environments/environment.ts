@@ -8,6 +8,7 @@ export const environment = {
   config: {
     name: 'Coin Market Cap API',
     maxCoinsDataCountDB: 5, // maximum number of coins data entry in db
+    mockedData: false, // if true use import hardcoded data else use real api
 
     importCoinsDataUrl: '/importCoinsData',
     getCoinsDataAPIUrl: '/api/getCoinsDataAPI',

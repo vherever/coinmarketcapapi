@@ -1,6 +1,7 @@
 export class AppConfig {
   public name = '';
   public maxCoinsDataCountDB = '';
+  public mockedData = false;
 
   public importCoinsDataUrl = '';
   public getCoinsDataAPIUrl: '';

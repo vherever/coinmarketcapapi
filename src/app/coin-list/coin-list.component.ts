@@ -10,6 +10,7 @@ import {AppConfig} from '../app.config';
 export class CoinListComponent implements OnInit {
   coinsDataSnapshoots: any;
   lastUpdatedCoinsData: any;
+  lastUpdatedCoinsDataId: any;
   log: any;
 
   constructor(
@@ -29,7 +30,11 @@ export class CoinListComponent implements OnInit {
   ngOnInit() {}
 
   getCoinsData() {
+    if (this.config.mockedData) {
+      this.importCoinsData();
+    } else {
       this.getCoinsDataAPI();
+    }
   }
 
   /* Get latest information from CoinMarketCap */
@@ -44,7 +49,7 @@ export class CoinListComponent implements OnInit {
       );
   }
 
-  private importHardcodedData() {
+  private importCoinsData() {
     this.log.postCoinsDataDB = true;
       this.dmService.importData()
           .then(
@@ -80,6 +85,7 @@ export class CoinListComponent implements OnInit {
           }
           this.coinsDataSnapshoots = res;
           this.lastUpdatedCoinsData = this.coinsDataSnapshoots[this.coinsDataSnapshoots.length - 1].data;
+          this.lastUpdatedCoinsDataId = this.coinsDataSnapshoots[this.coinsDataSnapshoots.length - 1]._id;
           console.log('coinsDataSnapshoots', this.coinsDataSnapshoots);
         }
       );
